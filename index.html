@@ -301,11 +301,34 @@
   .video-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 2px;
+    column-gap: 2px;
+    row-gap: 48px;
+  }
+  .video-card {
+    min-width: 0;
   }
   .video-item {
     position: relative; aspect-ratio: 16/9;
     overflow: hidden; background: var(--grey); cursor: none;
+  }
+  .video-info {
+    padding: 18px 4px 0;
+  }
+  .video-project-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.15rem;
+    font-weight: 300;
+    font-style: italic;
+    letter-spacing: 0.03em;
+    color: var(--white);
+    margin-bottom: 8px;
+  }
+  .video-role {
+    font-size: 0.62rem;
+    line-height: 1.7;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(245,244,242,0.45);
   }
   .video-placeholder {
     width: 100%; height: 100%;
@@ -684,44 +707,63 @@
   <div class="section-label reveal">Vidéo</div>
   <div class="video-grid reveal">
 
-    <div class="video-item" onclick="openModal('QGxCnlgB-Ac')">
-      <div class="yt-thumb-wrap">
-        <img class="yt-thumb" src="https://img.youtube.com/vi/QGxCnlgB-Ac/maxresdefault.jpg" alt="Lusee Production" loading="lazy">
-        <div class="yt-bars-top"></div>
-        <div class="yt-bars-bottom"></div>
-      </div>
-      <div class="video-play">
-        <div class="play-btn">
-          <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+    <!-- Modifie les titres et les rôles ci-dessous selon chaque projet -->
+    <article class="video-card">
+      <div class="video-item" onclick="openModal('QGxCnlgB-Ac')">
+        <div class="yt-thumb-wrap">
+          <img class="yt-thumb" src="https://img.youtube.com/vi/QGxCnlgB-Ac/maxresdefault.jpg" alt="Projet vidéo 01" loading="lazy">
+          <div class="yt-bars-top"></div>
+          <div class="yt-bars-bottom"></div>
+        </div>
+        <div class="video-play">
+          <div class="play-btn">
+            <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+          </div>
         </div>
       </div>
-    </div>
-  
-    <div class="video-item" onclick="openModal('ryAJ-Bc64J4')">
-      <div class="yt-thumb-wrap">
-        <img class="yt-thumb" src="https://img.youtube.com/vi/ryAJ-Bc64J4/maxresdefault.jpg" alt="Lusee Production" loading="lazy">
-        <div class="yt-bars-top"></div>
-        <div class="yt-bars-bottom"></div>
+      <div class="video-info">
+        <h3 class="video-project-title">Titre du projet 01</h3>
+        <p class="video-role">Rôles — Réalisation · Cadrage · Montage</p>
       </div>
-      <div class="video-play">
-        <div class="play-btn">
-          <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-        </div>
-      </div>
-    </div>
+    </article>
 
-    <div class="video-item" onclick="openModal('1Ibm4GZ2HxI')">
-      <div class="yt-thumb-wrap">
-        <img class="yt-thumb" src="https://img.youtube.com/vi/1Ibm4GZ2HxI/maxresdefault.jpg" alt="Lusee Production" loading="lazy">
-        <div class="yt-bars-top"></div>
-        <div class="yt-bars-bottom"></div>
-      </div>
-      <div class="video-play">
-        <div class="play-btn">
-          <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+    <article class="video-card">
+      <div class="video-item" onclick="openModal('ryAJ-Bc64J4')">
+        <div class="yt-thumb-wrap">
+          <img class="yt-thumb" src="https://img.youtube.com/vi/ryAJ-Bc64J4/maxresdefault.jpg" alt="Projet vidéo 02" loading="lazy">
+          <div class="yt-bars-top"></div>
+          <div class="yt-bars-bottom"></div>
+        </div>
+        <div class="video-play">
+          <div class="play-btn">
+            <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+          </div>
         </div>
       </div>
-    </div>
+      <div class="video-info">
+        <h3 class="video-project-title">Titre du projet 02</h3>
+        <p class="video-role">Rôles — Montage · Étalonnage · Habillage graphique</p>
+      </div>
+    </article>
+
+    <article class="video-card">
+      <div class="video-item" onclick="openModal('1Ibm4GZ2HxI')">
+        <div class="yt-thumb-wrap">
+          <img class="yt-thumb" src="https://img.youtube.com/vi/1Ibm4GZ2HxI/maxresdefault.jpg" alt="Projet vidéo 03" loading="lazy">
+          <div class="yt-bars-top"></div>
+          <div class="yt-bars-bottom"></div>
+        </div>
+        <div class="video-play">
+          <div class="play-btn">
+            <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+          </div>
+        </div>
+      </div>
+      <div class="video-info">
+        <h3 class="video-project-title">Titre du projet 03</h3>
+        <p class="video-role">Rôles — Direction artistique · Cadrage · Postproduction</p>
+      </div>
+    </article>
 
   </div>
 </section>
