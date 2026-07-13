@@ -132,35 +132,37 @@
     padding: 48px;
     overflow: hidden;
   }
-  .hero-video-wrap {
-    position: absolute; inset: 0;
+  .hero-image-wrap {
+    position: absolute;
+    inset: 0;
     overflow: hidden;
   }
-  .hero-video-wrap::after {
-    content: ''; position: absolute; inset: 0;
-    background: linear-gradient(to bottom, rgba(8,8,8,0.15) 0%, rgba(8,8,8,0.6) 100%);
+  .hero-image-wrap::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to bottom,
+      rgba(8,8,8,0.10) 0%,
+      rgba(8,8,8,0.24) 55%,
+      rgba(8,8,8,0.68) 100%
+    );
     z-index: 1;
+    pointer-events: none;
   }
-  #hero-video {
-    width: 100%; height: 100%;
+  #hero-image {
+    width: 100%;
+    height: 100%;
     object-fit: cover;
-    filter: grayscale(100%) contrast(1.08);
-    transform: scale(1.05);
+    object-position: center center;
+    display: block;
+    filter: contrast(1.04) brightness(0.92);
+    transform: scale(1.02);
     animation: heroZoom 20s var(--ease) infinite alternate;
   }
   @keyframes heroZoom {
-    from { transform: scale(1.05); }
-    to   { transform: scale(1.12); }
-  }
-
-  /* Placeholder background when no video */
-  .hero-bg-placeholder {
-    position: absolute; inset: 0;
-    background: 
-      radial-gradient(ellipse at 20% 50%, rgba(255,255,255,0.03) 0%, transparent 60%),
-      radial-gradient(ellipse at 80% 20%, rgba(255,255,255,0.02) 0%, transparent 50%),
-      var(--black);
-    z-index: 0;
+    from { transform: scale(1.02); }
+    to   { transform: scale(1.08); }
   }
   .hero-grain {
     position: absolute; inset: 0; z-index: 2;
@@ -614,6 +616,7 @@
     .hamburger { display: flex; }
     section { padding: 80px 24px; }
     #hero { padding: 24px; }
+    #hero-image { object-position: 53% center; }
     .hero-title { font-size: clamp(2.2rem, 11vw, 4rem); }
 
     .work-grid {
@@ -676,20 +679,12 @@
 
 <!-- HERO -->
 <section id="hero">
-  <div class="hero-video-wrap">
-    <!--
-      ══ REMPLACE CES src PAR TON PROPRE FICHIER ══
-      Formats recommandés : .mp4 (H.264) en priorité, .webm en fallback
-      Résolution idéale : 1920×1080, bitrate ~4–8 Mbps, durée 15–30s en boucle
-    -->
-    <video id="hero-video" autoplay muted loop playsinline preload="auto">
-      <!-- Source principale : MP4 H.264 — compatible partout -->
-      <source src="14471915_3840_2160_30fps.mp4" type="video/mp4">
-      <!-- Fallback WebM pour une meilleure compression sur Chrome/Firefox -->
-      <source src="14471915_3840_2160_30fps.webm" type="video/webm">
-    </video>
-    <!-- Fallback visuel si aucune source vidéo ne charge (mobile bas débit, etc.) -->
-    <div class="hero-bg-placeholder" id="heroBgFallback"></div>
+  <div class="hero-image-wrap">
+    <img
+      id="hero-image"
+      src="/Users/luciewang/Downloads/MacBook Pro 14_ - 2.jpg"
+      fetchpriority="high"
+    >
   </div>
   <div class="hero-grain"></div>
 
@@ -722,7 +717,7 @@
         </div>
       </div>
       <div class="video-info">
-        <h3 class="video-project-title">和你 (Avec toi) 01</h3>
+        <h3 class="video-project-title">Avec toi 01</h3>
         <p class="video-role">Réalisation · Cadrage · Montage · Etalonnage · Drone</p>
       </div>
     </article>
@@ -1008,22 +1003,10 @@
     }
   });
 
-  // ── VIDEO FALLBACK
-  const heroVideo = document.getElementById('hero-video');
-  const heroBg    = document.getElementById('heroBgFallback');
-  function activateFallback() {
-    if (heroVideo) heroVideo.style.display = 'none';
-    if (heroBg)    heroBg.style.opacity = '1';
-  }
-  if (heroVideo) {
-    heroVideo.addEventListener('error', activateFallback);
-    setTimeout(() => { if (heroVideo.readyState < 2) activateFallback(); }, 4000);
-  }
-
   // ── SMOOTH PARALLAX on hero
   window.addEventListener('scroll', () => {
     const y = window.scrollY;
-    const heroWrap = document.querySelector('.hero-video-wrap');
+    const heroWrap = document.querySelector('.hero-image-wrap');
     if (heroWrap && y < window.innerHeight) {
       heroWrap.style.transform = `translateY(${y * 0.3}px)`;
     }
